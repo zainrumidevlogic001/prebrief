@@ -1,67 +1,53 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui";
+import { FileText, Shield, Zap } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <header className="border-b border-slate-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <span className="text-2xl font-bold text-slate-900">⚖️ PreBrief</span>
+          <div className="flex gap-3">
+            <Link href="/login"><Button variant="outline">Sign In</Button></Link>
+            <Link href="/signup"><Button>Get Started</Button></Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="inline-block px-3 py-1 bg-slate-100 text-slate-700 text-sm font-medium rounded-full mb-6">
+            Free to use • No credit card required
+          </div>
+          <h2 className="text-5xl font-bold text-slate-900 mb-6 leading-tight">
+            Legal documents,{" "}
+            <span className="bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">simplified</span>
+          </h2>
+          <p className="text-xl text-slate-600 mb-10">
+            Answer simple questions. Get professional, lawyer-ready documents in minutes. Download editable Word files.
+          </p>
+          <Link href="/signup"><Button className="text-lg px-8 py-6 rounded-lg">Start Creating Documents →</Button></Link>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mt-24">
+          {[
+            { icon: Zap, title: "Fast & Easy", desc: "Answer plain-English questions and we generate your document instantly." },
+            { icon: Shield, title: "Secure & Private", desc: "Your data stays in your browser. Nothing is uploaded anywhere." },
+            { icon: FileText, title: "Professional Output", desc: "Download ready-to-sign .docx files. Fully editable in Word." },
+          ].map((f) => (
+            <div key={f.title} className="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+              <f.icon className="w-10 h-10 text-slate-900 mb-4" />
+              <h3 className="text-xl font-bold text-slate-900 mb-2">{f.title}</h3>
+              <p className="text-slate-600">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-20 bg-slate-100 p-6 rounded-xl">
+          <p className="text-sm text-slate-600 text-center">
+            <strong>Disclaimer:</strong> PreBrief is a document generation tool and does not provide legal advice. All documents should be reviewed by a qualified attorney before use.
+          </p>
         </div>
       </main>
     </div>
